@@ -13,27 +13,10 @@ export const FAILURE = 'FAILURE';
 // the url to fetch characters from is `https://swapi.co/api/people/`
 // remember that now we have controll over our thunk-based action creator
 
-export const fetching = () => ({
-  type: FETCHING
-});
-
-export const success = characters => ({
-  type: SUCCESS,
-  payload: { characters }
-});
-
-export const failure = error => ({
-  type: FAILURE,
-  payload: { error }
-});
-
 export const fetchData = () => dispatch => {
+  dispatch({ type: FETCHING });
   axios
-    .get('http://gabe.mockable.io/quotes')
-    .then(data => {
-      dispatch({ type: SUCCESS, payload: data.data });
-    })
-    .catch(error => {
-      dispatch({ type: FAILURE });
-    });
+    .get('https://swapi.co/api/people/')
+    .then(res => dispatch({ type: SUCCESS, payload: res.data.results }))
+    .catch(err => dispatch({ type: FAILURE, payload: err.message }));
 };
