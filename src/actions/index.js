@@ -13,20 +13,20 @@ export const FAILURE = 'FAILURE';
 // the url to fetch characters from is `https://swapi.co/api/people/`
 // remember that now we have controll over our thunk-based action creator
 
-export function fetchData() {
-  return function(dispatch) {
-    dispatch({ type: FETCHING });
-    axios
-      .get('https://swapi.co/api/people/')
-      .then(res => dispatch({ type: SUCCESS, payload: res.data.results }))
-      .catch(err => dispatch({ type: FAILURE, payload: err.message }));
-  };
-}
+// export function fetchData() {
+//   return function(dispatch) {
+//     dispatch({ type: FETCHING });
+//     axios
+//       .get('https://swapi.co/api/people/')
+//       .then(res => dispatch({ type: SUCCESS, payload: res.data.results }))
+//       .catch(err => dispatch({ type: FAILURE, payload: err.message }));
+//   };
+// }
 
-// export const fetchData = () => dispatch => {
-//   dispatch({ type: FETCHING });
-//   axios
-//     .get('https://swapi.co/api/people/')
-//     .then(res => dispatch({ type: SUCCESS, payload: res.data.results }))
-//     .catch(err => dispatch({ type: FAILURE, payload: err.message }));
-// };
+export const fetchData = () => dispatch => {
+  dispatch({ type: FETCHING });
+  axios
+    .get('https://swapi.co/api/people/')
+    .then(res => dispatch({ type: SUCCESS, payload: res.data.results }))
+    .catch(err => dispatch({ type: FAILURE, payload: err.message }));
+};
